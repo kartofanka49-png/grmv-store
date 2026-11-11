@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: grmv-store
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: BOT_TOKEN
+        value: "9256914733:AAGFyCn_BgWHjj2WYU60al1CqUzY6jZRMnA"
+      - key: TELEGRAM_ADMIN_IDS
+        value: "5563980982,1832874640"
+      - key: GRMV_SERVE_FRONTEND
+        value: "1"
+      - key: DEV_AUTH_ENABLED
+        value: "false"
