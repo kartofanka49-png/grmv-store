@@ -5,7 +5,13 @@ echo "=== Starting GRMV xLUCH store container ==="
 
 PORT="${PORT:-7860}"
 
-if [ -n "$SPACE_HOST" ]; then
+if [ -n "$RENDER_EXTERNAL_URL" ]; then
+    export APP_BASE_URL="$RENDER_EXTERNAL_URL"
+    export API_BASE_URL="$RENDER_EXTERNAL_URL"
+elif [ -n "$RENDER_EXTERNAL_HOSTNAME" ]; then
+    export APP_BASE_URL="https://$RENDER_EXTERNAL_HOSTNAME"
+    export API_BASE_URL="https://$RENDER_EXTERNAL_HOSTNAME"
+elif [ -n "$SPACE_HOST" ]; then
     if [ -z "$APP_BASE_URL" ]; then
         export APP_BASE_URL="https://$SPACE_HOST"
     fi
